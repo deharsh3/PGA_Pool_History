@@ -245,21 +245,20 @@ detailRow.style.display="none"
 
 const playerHtml = team.players.map(p=>{
 
-const playerName =
-typeof p === "string" ? p : p.name
-
-const playerScore =
-typeof p === "string" ? "" : p.score
+const counting =
+team.best4.some(b =>
+  normalizeName(b) === normalizeName(p.name)
+)
 
 return `
 <div style="display:flex;justify-content:space-between">
 
 <span>
-${counting ? "✔" : "✖"} ${titleCase(playerName)}
+${counting ? "✔" : "✖"} ${titleCase(p.name)}
 </span>
 
-<span ${counting?'style="font-weight:bold"':''}>
-${playerScore}
+<span ${counting ? 'style="font-weight:bold"' : ''}>
+${p.score}
 </span>
 
 </div>
