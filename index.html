@@ -80,11 +80,15 @@ const RESULTS_ENDPOINT =
 let results = []
 
 function normalizeName(name){
+
+if(!name) return ""
+
 return name
 .normalize("NFD")
 .replace(/[\u0300-\u036f]/g,"")
 .toLowerCase()
 .trim()
+
 }
 
 function titleCase(name){
@@ -241,20 +245,21 @@ detailRow.style.display="none"
 
 const playerHtml = team.players.map(p=>{
 
-const counting =
-team.best4.some(b =>
-normalizeName(b.name) === normalizeName(p.name)
-)
+const playerName =
+typeof p === "string" ? p : p.name
+
+const playerScore =
+typeof p === "string" ? "" : p.score
 
 return `
 <div style="display:flex;justify-content:space-between">
 
 <span>
-${counting ? "✔" : "✖"} ${titleCase(p.name)}
+${counting ? "✔" : "✖"} ${titleCase(playerName)}
 </span>
 
 <span ${counting?'style="font-weight:bold"':''}>
-${p.score}
+${playerScore}
 </span>
 
 </div>
