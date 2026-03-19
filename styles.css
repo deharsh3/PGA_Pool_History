@@ -1,41 +1,42 @@
 :root{
 
-/* Primary tournament colors */
---primary-color:#0b3d0b;
---secondary-color:#083608;
---accent-color:#FFD700;
+/* ---------- Called Theme ---------- */
 
-/* Text colors */
+--primary-color:#1b5e20;
+--secondary-color:#0f3d13;
+--accent-color:#2e7d32;
+--hero-image:url("pga_banner.png");
+}
+
+/* ---------- DEFAULT PGA THEME ---------- 
+
+--primary-color:#1b5e20;
+--secondary-color:#0f3d13;
+--accent-color:#2e7d32;
+
 --text-light:#ffffff;
 --text-dark:#000000;
 
-/* Hero image */
---hero-image:url("masters_banner.jpg");
+--hero-image:url("pga_banner.png"); */
 
+/* ---------- GLOBAL ---------- */
+
+body {
+  margin: 0;
+  font-family: 'EB Garamond', serif;
+  background: #f5f7f6;
+  color: #222;
 }
 
-body{
-font-family:"EB Garamond", serif;
-background:var(--primary-color);
-color:var(--text-light);
-padding:20px;
+/* container feel */
+#tournamentInfo,
+#updateInfo,
+#expandNote {
+  max-width: 900px;
+  margin: auto;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-background:white;
-color:black;
-}
-
-thead{
-  text-align: left;
-}
-
-th,td{
-padding:10px;
-border-bottom:1px solid #ddd;
-}
+/* ---------- HEADER ---------- */
 
 #header{
 text-align:center;
@@ -50,9 +51,23 @@ display:block;
 margin:auto;
 }
 
+/* ---------- HERO ---------- */
+
+.hero-image{
+background-image:var(--hero-image);
+height:250px;
+width:100%;
+background-position:center;
+background-repeat:no-repeat;
+background-size:cover;
+}
+
+/* ---------- NAVBAR ---------- */
+
 #navbar{
 display:flex;
 gap:20px;
+justify-content:center;
 background:var(--secondary-color);
 padding:12px;
 margin-bottom:20px;
@@ -67,8 +82,10 @@ font-size:16px;
 
 #navbar a:hover{
 text-decoration:underline;
-color:#fff3a0;
+color:#ffffff;
 }
+
+/* ---------- INFO ---------- */
 
 #tournamentInfo{
 background:white;
@@ -80,14 +97,6 @@ text-align:center;
 font-weight:bold;
 }
 
-.cutline{
-color:white;
-font-size:18px;
-margin-bottom:10px;
-font-weight:bold
-
-}
-
 #tournamentStatus{
 font-size:14px;
 color:#666;
@@ -97,25 +106,73 @@ color:#666;
 text-align:center;
 margin-bottom:10px;
 font-size:14px;
-color:#ddd;
+color:#666;
 }
 
-.arrow{
-margin-right:8px;
-color:#0b3d0b;
+/* ---------- LEADERBOARD ---------- */
+
+table {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+thead {
+  background: var(--primary-color);
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: #f3f3f3;
+}
+
+tbody tr:hover {
+  background: #e8f5e9;
+  cursor:pointer;
+}
+
+/* ---------- TOP 3 ---------- */
+
+tbody tr:nth-child(1) {
+  background: #fff8e1;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(2) {
+  background: #f1f1f1;
+}
+
+tbody tr:nth-child(3) {
+  background: #f5efe6;
+}
+
+/* ---------- CUTLINE ---------- */
+
+.cutline{
+color:var(--primary-color);
+font-size:18px;
+margin-bottom:10px;
 font-weight:bold;
+text-align:center;
 }
 
-#leaderboard tbody tr:hover{
-background:#f4f4f4;
-cursor:pointer;
-}
+/* ---------- STATUS ---------- */
 
 #updateInfo{
 text-align:center;
 font-size:13px;
 margin-bottom:10px;
-color:#ddd;
+color:#666;
 }
 
 .refreshSpinner{
@@ -124,6 +181,8 @@ color:var(--accent-color);
 font-weight:bold;
 display:none;
 }
+
+/* ---------- TEAMS ---------- */
 
 .team{
 background:white;
@@ -138,21 +197,12 @@ margin:0;
 cursor:pointer;
 }
 
-.teamSearch{
-padding:8px;
-width:250px;
-border-radius:4px;
-border:none;
-}
-
 .players{
 display:none;
 margin-top:10px;
 }
 
-.selected{
-background:var(--accent-color);
-}
+/* ---------- BUTTONS ---------- */
 
 button{
 padding:8px;
@@ -163,6 +213,22 @@ margin:3px;
 display:block;
 margin:2px;
 }
+
+.selected{
+background:var(--accent-color);
+color:white;
+}
+
+/* ---------- SEARCH ---------- */
+
+.teamSearch{
+padding:8px;
+width:250px;
+border-radius:4px;
+border:1px solid #ccc;
+}
+
+/* ---------- TEXT ---------- */
 
 .tiebreaker{
 font-size:11px;
@@ -189,23 +255,10 @@ margin-top:20px;
 font-weight:bold;
 }
 
-/* The hero image */
-.hero-image{
+/* ---------- ACCORDIONS ---------- */
 
-background-image:var(--hero-image);
-
-height:250px;
-width:100%;
-
-background-position:center;
-background-repeat:no-repeat;
-background-size:cover;
-position:relative;
-
-}
-
-
-.oddsAccordion{
+.oddsAccordion,
+.leaderboardKey{
 background:white;
 color:black;
 padding:12px;
@@ -213,40 +266,24 @@ border-radius:6px;
 margin-top:15px;
 }
 
-.oddsAccordion summary{
-cursor:pointer;
-font-weight:bold;
-color:#0b3d0b;
-}
-
-.oddsAccordion summary:hover{
-color:#083608;
-}
-
-.favorite,.mid,.longshot{
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .leaderboardKey{
-background:white;
-color:black;
-padding:12px;
-border-radius:6px;
 margin-bottom:15px;
 max-width:520px;
 }
 
+.oddsAccordion summary,
 .leaderboardKey summary{
 cursor:pointer;
 font-weight:bold;
-color:#0b3d0b;
-font-size:16px;
+color:var(--primary-color);
 }
 
+.oddsAccordion summary:hover,
 .leaderboardKey summary:hover{
-color:#083608;
+color:var(--secondary-color);
 }
+
+/* ---------- KEY ---------- */
 
 .keyRow{
 display:flex;
@@ -260,32 +297,61 @@ width:28px;
 font-weight:bold;
 }
 
-body.valspar{
+/* ---------- TIERS ---------- */
 
---primary-color:#004f7c;
---secondary-color:#00395a;
---accent-color:#00a3e0;
-
---hero-image:url("valspar_banner.png");
-
+.favorite,.mid,.longshot{
+display:flex;
+flex-wrap:wrap;
 }
 
-body.masters{
+/* ---------- ARROW ---------- */
 
+.arrow{
+margin-right:8px;
+color:var(--primary-color);
+font-weight:bold;
+}
+
+/* ---------- THEMES ---------- */
+
+/* Masters */
+body.masters{
 --primary-color:#0b3d0b;
 --secondary-color:#083608;
 --accent-color:#FFD700;
-
 --hero-image:url("masters_banner.jpg");
-
 }
 
-body.pga{
-
+/* Valspar */
+body.valspar{
 --primary-color:#004f7c;
 --secondary-color:#00395a;
 --accent-color:#00a3e0;
+--hero-image:url("valspar_banner.png");
+}
 
---hero-image:url("pga_banner.jpg");
+/* PGA Generic (default override if needed) */
+body.pga{
+--primary-color:#1b5e20;
+--secondary-color:#0f3d13;
+--accent-color:#2e7d32;
+--hero-image:url("pga_banner.png");
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  .hero-image {
+    height: 160px;
+  }
 
 }
