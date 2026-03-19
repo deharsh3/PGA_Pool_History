@@ -60,6 +60,7 @@ width:100%;
 background-position:center;
 background-repeat:no-repeat;
 background-size:cover;
+position:relative;
 }
 
 /* ---------- NAVBAR ---------- */
@@ -83,6 +84,15 @@ font-size:16px;
 #navbar a:hover{
 text-decoration:underline;
 color:#ffffff;
+}
+
+/* ---------- HEADER SECTION ---------- */
+
+
+.headerSection {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
 }
 
 /* ---------- INFO ---------- */
