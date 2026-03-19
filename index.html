@@ -102,6 +102,18 @@ Authorization:`Bearer ${API_KEY}`
 
 results = await res.json()
 
+console.log("History results:", results)
+
+populateDropdown()
+
+if(results.length){
+loadPool(results[0].id)
+}
+
+}
+
+results = await res.json()
+
 // sort newest tournaments first
 results.sort((a,b)=>
 new Date(b.created_at) - new Date(a.created_at)
@@ -110,7 +122,14 @@ new Date(b.created_at) - new Date(a.created_at)
 populateDropdown()
 
 if(results.length){
+
 loadPool(results[0].id)
+
+}else{
+
+document.getElementById("poolTitle").innerText =
+"No historical results available"
+
 }
 
 }
