@@ -217,7 +217,25 @@ function renderLeaderboard(teams){
 const tbody = document.querySelector("#leaderboard tbody")
 tbody.innerHTML=""
 
+teams.sort((a,b)=>{
+
+  if(a.total !== b.total){
+    return a.total - b.total
+  }
+
+  return (b.tiebreaker ?? 0) - (a.tiebreaker ?? 0)
+})
+
+const leaderScore = teams[0]?.total ?? 0
+
 teams.forEach((team,i)=>{
+
+const shotsBack = team.total - leaderScore
+
+const shotsBackText =
+  shotsBack === 0
+    ? "Leader"
+    : `${shotsBack} ${shotsBack === 1 ? "shot" : "shots"} back`
 
 const row=document.createElement("tr")
 
@@ -233,11 +251,19 @@ row.innerHTML=`
 <td style="cursor:pointer;font-weight:${i<3?'bold':'normal'}">
 
 <span class="arrow">▶</span>
-${medal}${team.name}
+${medal}${titleCase(team.name)}
+${team.tiebreaker !== undefined ? `
+  <div class="tiebreaker">
+    Tiebreaker: ${team.tiebreaker.toFixed(1)}
+  </div>
+` : ""}
 
 </td>
 
-<td>${team.total}</td>
+<td>
+  ${team.total}
+  <div class="tiebreaker">${shotsBackText}</div>
+</td>
 `
 
 tbody.appendChild(row)
@@ -252,6 +278,8 @@ const counting =
 team.best4.some(b =>
   normalizeName(b) === normalizeName(p.name)
 )
+
+const leaderScore = teams[0]?.total ?? 0
 
 return `
 <div style="display:flex;justify-content:space-between">

@@ -1,22 +1,19 @@
 :root{
-  --primary-color:#0b3d0b;
-  --secondary-color:#083608;
-  --accent-color:#FFD700;
+  /* THEME (from original) */
+  --primary-color:#1b5e20;
+  --secondary-color:#0f3d13;
+  --accent-color:#2e7d32;
 
   --text-light:#ffffff;
   --text-dark:#000000;
 
-  --hero-image:url("masters_banner.jpg");
+  --bg-light:#ffffff;
+  --bg-muted:#f3f3f3;
+
+  --hero-image:url("pga_banner.png");
 }
 
 /* THEMES */
-body.valspar{
-  --primary-color:#004f7c;
-  --secondary-color:#00395a;
-  --accent-color:#00a3e0;
-  --hero-image:url("valspar_banner.png");
-}
-
 body.masters{
   --primary-color:#0b3d0b;
   --secondary-color:#083608;
@@ -24,15 +21,23 @@ body.masters{
   --hero-image:url("masters_banner.jpg");
 }
 
-body.pga{
+body.valspar{
   --primary-color:#004f7c;
   --secondary-color:#00395a;
   --accent-color:#00a3e0;
-  --hero-image:url("pga_banner.jpg");
+  --hero-image:url("valspar_banner.png");
+}
+
+body.pga{
+  --primary-color:#1b5e20;
+  --secondary-color:#0f3d13;
+  --accent-color:#2e7d32;
+  --hero-image:url("pga_banner.png");
 }
 
 /* BASE (MOBILE FIRST) */
 body{
+  margin:0;
   font-family:"EB Garamond", serif;
   background:var(--primary-color);
   color:var(--text-light);
@@ -43,7 +48,7 @@ body{
 /* HERO */
 .hero-image{
   background-image:var(--hero-image);
-  height:90px;
+  height:120px;
   width:100%;
   background-position:center;
   background-size:cover;
@@ -55,8 +60,11 @@ body{
   margin-bottom:10px;
 }
 
-h1{
-  text-align: center; 
+#header img{
+  max-width:200px;
+  width:100%;
+  display:block;
+  margin:auto;
 }
 
 /* NAVBAR */
@@ -66,7 +74,6 @@ h1{
   align-items:center;
   background:var(--secondary-color);
   padding:12px;
-  position:relative;
   margin-bottom:20px;
 }
 
@@ -83,73 +90,38 @@ h1{
   right:0;
   height:100%;
   width:260px;
-
-  box-sizing:border-box;
-
   transform:translateX(100%);
   transition:transform 0.3s ease;
-
   background:var(--secondary-color);
   display:flex;
   flex-direction:column;
   padding:70px 20px;
-
   z-index:1000;
 }
 
 #navMenu.active{
-  transform: translateX(0);
-}
-
-#navMenu.active{
-  right:0;
+  transform:translateX(0);
 }
 
 #navMenu a{
-  display:block;
   padding:14px;
   margin-bottom:8px;
-
   border-radius:6px;
   text-decoration:none;
-
   background:rgba(255,255,255,0.05);
   color:var(--accent-color);
-
-  transition:all 0.2s ease;
 }
 
 #navMenu a:hover{
   background:rgba(255,255,255,0.15);
   color:var(--text-light);
-  transform:translateX(4px);
-}
-
-.menu-header{
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:20px;
-  color:var(--text-light);
-}
-
-.closeMenu{
-  position:absolute;
-  top:15px;
-  right:15px;
-  font-size:22px;
-  cursor:pointer;
-  color:var(--accent-color);
 }
 
 #overlay{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   background:rgba(0,0,0,0.5);
   display:none;
-  z-index:999;
 }
 
 #overlay.active{
@@ -158,72 +130,87 @@ h1{
 
 /* CONTENT BLOCKS */
 .instructions,
-.oddsAccordion{
-  background:white;
-  color:black;
+.oddsAccordion,
+.leaderboardKey,
+#tournamentInfo{
+  background:var(--bg-light);
+  color:var(--text-dark);
   padding:12px;
   border-radius:6px;
+  margin-bottom:10px;
 }
 
-.leaderboardKey{
-  background:white;
-  color:black;
-  padding:12px;
-  border-radius:6px;
-  margin-bottom: 10px;
-}
-
-/* TEXT ELEMENTS */
+/* TEXT */
 .cutline{
   font-size:16px;
   font-weight:bold;
+  color:var(--primary-color);
+  text-align:center;
 }
 
-.updateInfo{
-  text-align:left;
+#updateInfo{
+  text-align:center;
   font-size:12px;
   color:#ddd;
 }
 
 .lockCountdown{
   text-align:center;
-  margin-bottom:10px;
   font-weight:bold;
   color:var(--accent-color);
 }
 
-.message{
-  margin-top:15px;
-  font-weight:bold;
-}
-
-/* TABLES (MOBILE FIRST) */
+/* TABLE */
 table{
   width:100%;
   border-collapse:collapse;
-  background:white;
-  color:black;
-  font-size:14px;
+  background:var(--bg-light);
+  color:var(--text-dark);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+thead{
+  background:var(--primary-color);
+  color:var(--text-light);
 }
 
 th, td{
-  padding:6px;
-  border-bottom:1px solid #ddd;
+  padding:8px;
   text-align:left;
 }
 
-/* TEAM LIST */
+/* ROW STYLING */
+tbody tr:nth-child(even){
+  background:var(--bg-muted);
+}
+
+tbody tr:hover{
+  background:#e8f5e9;
+  cursor:pointer;
+}
+
+/* TOP 3 */
+tbody tr:nth-child(1){
+  background:#fff8e1;
+  font-weight:bold;
+}
+
+tbody tr:nth-child(2){
+  background:#f1f1f1;
+}
+
+tbody tr:nth-child(3){
+  background:#f5efe6;
+}
+
+/* TEAM */
 .team{
-  background:white;
-  color:black;
+  background:var(--bg-light);
+  color:var(--text-dark);
   padding:10px;
   margin-bottom:10px;
   border-radius:5px;
-}
-
-.team h3{
-  margin:0;
-  cursor:pointer;
 }
 
 .players{
@@ -233,15 +220,9 @@ th, td{
 
 /* SEARCH */
 .search-container{
-  flex-direction: column-reverse;
-  display: flex;
-  align-content: left;
-  justify-content: left;
-  margin-bottom: 10px;
-}
-
-.expandNote{
-  padding: 4px 0;
+  display:flex;
+  flex-direction:column-reverse;
+  margin-bottom:10px;
 }
 
 .teamSearch{
@@ -256,51 +237,19 @@ button{
   margin:3px;
 }
 
-/* PLAYER PICK UI */
-.favorite, .mid, .longshot{
-  display:flex;
-  flex-wrap:wrap;
-}
-
-.player{
-  display:block;
-  margin:2px;
-}
-
 .selected{
   background:var(--accent-color);
-}
-
-/* LEADERBOARD */
-.team-row{
-  cursor:pointer;
-}
-
-.top-team{
-  font-weight:bold;
-}
-
-.player-row{
-  display:flex;
-  justify-content:space-between;
-}
-
-.detail-cell{
-  background:#f3f3f3;
-}
-
-.tiebreaker{
-  font-size:11px;
-  color:#777;
+  color:white;
 }
 
 /* ACCORDION */
 .oddsAccordion summary,
 .leaderboardKey summary{
   cursor:pointer;
-  color: var(--text-dark);;
+  color:var(--primary-color);
 }
 
+/* DESKTOP */
 @media (min-width:768px){
 
   body{
@@ -316,47 +265,28 @@ button{
     display:none;
   }
 
-  .closeMenu{
-    display: none;
-  }
-
-  .menu-header{
-    display: none;
-  }
-
-  .search-container{
-    flex-direction: row;
-  }
-
-  .expandNote{
-    padding: 4px 16px;
-  }
-
   #navMenu{
     position:static;
     flex-direction:row;
     height:auto;
     width:100%;
     padding:0;
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    transform:none; /* 🔥 IMPORTANT */
-  }
-
-  #navMenu a:hover{
-    background:none;
-    text-decoration:underline;
+    transform:none;
+    justify-content:space-between;
   }
 
   #navMenu a{
-    margin: 0;
-    width: auto;
-    font-size:16px;
     background:none;
     flex:1;
-    text-align: center;
-    padding: 8px 0;
+    text-align:center;
+  }
+
+  #navMenu a:hover{
+    text-decoration:underline;
+  }
+
+  .search-container{
+    flex-direction:row;
   }
 
   th, td{
@@ -366,5 +296,4 @@ button{
   .teamSearch{
     width:250px;
   }
-
 }
