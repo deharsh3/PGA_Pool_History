@@ -1,367 +1,370 @@
 :root{
+  --primary-color:#0b3d0b;
+  --secondary-color:#083608;
+  --accent-color:#FFD700;
 
-/* ---------- Called Theme ---------- */
+  --text-light:#ffffff;
+  --text-dark:#000000;
 
---primary-color:#1b5e20;
---secondary-color:#0f3d13;
---accent-color:#2e7d32;
---hero-image:url("pga_banner.png");
+  --hero-image:url("masters_banner.jpg");
 }
 
-/* ---------- DEFAULT PGA THEME ---------- 
-
---primary-color:#1b5e20;
---secondary-color:#0f3d13;
---accent-color:#2e7d32;
-
---text-light:#ffffff;
---text-dark:#000000;
-
---hero-image:url("pga_banner.png"); */
-
-/* ---------- GLOBAL ---------- */
-
-body {
-  margin: 0;
-  font-family: 'EB Garamond', serif;
-  background: #f5f7f6;
-  color: #222;
+/* THEMES */
+body.valspar{
+  --primary-color:#004f7c;
+  --secondary-color:#00395a;
+  --accent-color:#00a3e0;
+  --hero-image:url("valspar_banner.png");
 }
 
-/* container feel */
-#tournamentInfo,
-#updateInfo,
-#expandNote {
-  max-width: 900px;
-  margin: auto;
+body.masters{
+  --primary-color:#0b3d0b;
+  --secondary-color:#083608;
+  --accent-color:#FFD700;
+  --hero-image:url("masters_banner.jpg");
 }
 
-/* ---------- HEADER ---------- */
-
-#header{
-text-align:center;
-margin-bottom:10px;
+body.pga{
+  --primary-color:#004f7c;
+  --secondary-color:#00395a;
+  --accent-color:#00a3e0;
+  --hero-image:url("pga_banner.jpg");
 }
 
-#header img{
-max-width:200px;
-width:100%;
-height:auto;
-display:block;
-margin:auto;
+/* BASE (MOBILE FIRST) */
+body{
+  font-family:"EB Garamond", serif;
+  background:var(--primary-color);
+  color:var(--text-light);
+  padding:12px;
+  font-size:14px;
 }
 
-/* ---------- HERO ---------- */
-
+/* HERO */
 .hero-image{
-background-image:var(--hero-image);
-height:250px;
-width:100%;
-background-position:center;
-background-repeat:no-repeat;
-background-size:cover;
-position:relative;
+  background-image:var(--hero-image);
+  height:90px;
+  width:100%;
+  background-position:center;
+  background-size:cover;
 }
 
-/* ---------- NAVBAR ---------- */
-
-#navbar{
-display:flex;
-gap:20px;
-justify-content:center;
-background:var(--secondary-color);
-padding:12px;
-margin-bottom:20px;
+/* HEADER */
+.header{
+  text-align:center;
+  margin-bottom:10px;
 }
 
-#navbar a{
-color:var(--accent-color);
-text-decoration:none;
-font-weight:bold;
-font-size:16px;
+h1{
+  text-align: center; 
 }
 
-#navbar a:hover{
-text-decoration:underline;
-color:#ffffff;
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:var(--secondary-color);
+  padding:12px;
+  position:relative;
+  margin-bottom:20px;
 }
 
-/* ---------- HEADER SECTION ---------- */
-
-
-.headerSection {
-  width: 90%;
-  max-width: 900px;
-  margin: auto;
-}
-
-/* ---------- INFO ---------- */
-
-#tournamentInfo{
-background:white;
-color:black;
-padding:12px;
-border-radius:6px;
-margin-bottom:15px;
-text-align:center;
-font-weight:bold;
-}
-
-#tournamentStatus{
-font-size:14px;
-color:#666;
-}
-
-#expandNote{
-text-align:center;
-margin-bottom:10px;
-font-size:14px;
-color:#666;
-}
-
-/* ---------- LEADERBOARD ---------- */
-
-table {
-  width: 90%;
-  max-width: 900px;
-  margin: auto;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-thead {
-  background: var(--primary-color);
-  color: white;
-}
-
-th, td {
-  padding: 12px;
-  text-align: center;
-}
-
-tbody tr:nth-child(even) {
-  background: #f3f3f3;
-}
-
-tbody tr:hover {
-  background: #e8f5e9;
+#hamburger{
+  font-size:26px;
   cursor:pointer;
+  color:var(--accent-color);
 }
 
-/* ---------- TOP 3 ---------- */
+/* MOBILE MENU */
+#navMenu{
+  position:fixed;
+  top:0;
+  right:0;
+  height:100%;
+  width:260px;
 
-tbody tr:nth-child(1) {
-  background: #fff8e1;
-  font-weight: bold;
+  box-sizing:border-box;
+
+  transform:translateX(100%);
+  transition:transform 0.3s ease;
+
+  background:var(--secondary-color);
+  display:flex;
+  flex-direction:column;
+  padding:70px 20px;
+
+  z-index:1000;
 }
 
-tbody tr:nth-child(2) {
-  background: #f1f1f1;
+#navMenu.active{
+  transform: translateX(0);
 }
 
-tbody tr:nth-child(3) {
-  background: #f5efe6;
+#navMenu.active{
+  right:0;
 }
 
-/* ---------- CUTLINE ---------- */
+#navMenu a{
+  display:block;
+  padding:14px;
+  margin-bottom:8px;
 
+  border-radius:6px;
+  text-decoration:none;
+
+  background:rgba(255,255,255,0.05);
+  color:var(--accent-color);
+
+  transition:all 0.2s ease;
+}
+
+#navMenu a:hover{
+  background:rgba(255,255,255,0.15);
+  color:var(--text-light);
+  transform:translateX(4px);
+}
+
+.menu-header{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:20px;
+  color:var(--text-light);
+}
+
+.closeMenu{
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-size:22px;
+  cursor:pointer;
+  color:var(--accent-color);
+}
+
+#overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  z-index:999;
+}
+
+#overlay.active{
+  display:block;
+}
+
+/* CONTENT BLOCKS */
+.instructions,
+.oddsAccordion{
+  background:white;
+  color:black;
+  padding:12px;
+  border-radius:6px;
+}
+
+.leaderboardKey{
+  background:white;
+  color:black;
+  padding:12px;
+  border-radius:6px;
+  margin-bottom: 10px;
+}
+
+/* TEXT ELEMENTS */
 .cutline{
-color:var(--primary-color);
-font-size:18px;
-margin-bottom:10px;
-font-weight:bold;
-text-align:center;
+  font-size:16px;
+  font-weight:bold;
 }
 
-/* ---------- STATUS ---------- */
-
-#updateInfo{
-text-align:center;
-font-size:13px;
-margin-bottom:10px;
-color:#666;
-}
-
-.refreshSpinner{
-margin-left:10px;
-color:var(--accent-color);
-font-weight:bold;
-display:none;
-}
-
-/* ---------- TEAMS ---------- */
-
-.team{
-background:white;
-color:black;
-padding:10px;
-margin-bottom:10px;
-border-radius:5px;
-}
-
-.team h3{
-margin:0;
-cursor:pointer;
-}
-
-.players{
-display:none;
-margin-top:10px;
-}
-
-/* ---------- BUTTONS ---------- */
-
-button{
-padding:8px;
-margin:3px;
-}
-
-.player{
-display:block;
-margin:2px;
-}
-
-.selected{
-background:var(--accent-color);
-color:white;
-}
-
-/* ---------- SEARCH ---------- */
-
-.teamSearch{
-padding:8px;
-width:250px;
-border-radius:4px;
-border:1px solid #ccc;
-}
-
-/* ---------- TEXT ---------- */
-
-.tiebreaker{
-font-size:11px;
-color:#777;
-}
-
-.instructions{
-background:white;
-color:black;
-padding:15px;
-border-radius:6px;
-margin-bottom:20px;
+.updateInfo{
+  text-align:left;
+  font-size:12px;
+  color:#ddd;
 }
 
 .lockCountdown{
-text-align:center;
-margin-bottom:15px;
-font-weight:bold;
-color:var(--accent-color);
+  text-align:center;
+  margin-bottom:10px;
+  font-weight:bold;
+  color:var(--accent-color);
 }
 
 .message{
-margin-top:20px;
-font-weight:bold;
+  margin-top:15px;
+  font-weight:bold;
 }
 
-/* ---------- ACCORDIONS ---------- */
-
-.oddsAccordion,
-.leaderboardKey{
-background:white;
-color:black;
-padding:12px;
-border-radius:6px;
-margin-top:15px;
+/* TABLES (MOBILE FIRST) */
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+  color:black;
+  font-size:14px;
 }
 
-.leaderboardKey{
-margin-bottom:15px;
-max-width:520px;
+th, td{
+  padding:6px;
+  border-bottom:1px solid #ddd;
+  text-align:left;
 }
 
+/* TEAM LIST */
+.team{
+  background:white;
+  color:black;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:5px;
+}
+
+.team h3{
+  margin:0;
+  cursor:pointer;
+}
+
+.players{
+  display:none;
+  margin-top:8px;
+}
+
+/* SEARCH */
+.search-container{
+  flex-direction: column-reverse;
+  display: flex;
+  align-content: left;
+  justify-content: left;
+  margin-bottom: 10px;
+}
+
+.expandNote{
+  padding: 4px 0;
+}
+
+.teamSearch{
+  padding:8px;
+  border-radius:4px;
+  border:none;
+}
+
+/* BUTTONS */
+button{
+  padding:8px;
+  margin:3px;
+}
+
+/* PLAYER PICK UI */
+.favorite, .mid, .longshot{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.player{
+  display:block;
+  margin:2px;
+}
+
+.selected{
+  background:var(--accent-color);
+}
+
+/* LEADERBOARD */
+.team-row{
+  cursor:pointer;
+}
+
+.top-team{
+  font-weight:bold;
+}
+
+.player-row{
+  display:flex;
+  justify-content:space-between;
+}
+
+.detail-cell{
+  background:#f3f3f3;
+}
+
+.tiebreaker{
+  font-size:11px;
+  color:#777;
+}
+
+/* ACCORDION */
 .oddsAccordion summary,
 .leaderboardKey summary{
-cursor:pointer;
-font-weight:bold;
-color:var(--primary-color);
+  cursor:pointer;
+  color: var(--text-dark);;
 }
 
-.oddsAccordion summary:hover,
-.leaderboardKey summary:hover{
-color:var(--secondary-color);
-}
+@media (min-width:768px){
 
-/* ---------- KEY ---------- */
-
-.keyRow{
-display:flex;
-align-items:center;
-margin-top:6px;
-font-size:14px;
-}
-
-.keyIcon{
-width:28px;
-font-weight:bold;
-}
-
-/* ---------- TIERS ---------- */
-
-.favorite,.mid,.longshot{
-display:flex;
-flex-wrap:wrap;
-}
-
-/* ---------- ARROW ---------- */
-
-.arrow{
-margin-right:8px;
-color:var(--primary-color);
-font-weight:bold;
-}
-
-/* ---------- THEMES ---------- */
-
-/* Masters */
-body.masters{
---primary-color:#0b3d0b;
---secondary-color:#083608;
---accent-color:#FFD700;
---hero-image:url("masters_banner.jpg");
-}
-
-/* Valspar */
-body.valspar{
---primary-color:#004f7c;
---secondary-color:#00395a;
---accent-color:#00a3e0;
---hero-image:url("valspar_banner.png");
-}
-
-/* PGA Generic (default override if needed) */
-body.pga{
---primary-color:#1b5e20;
---secondary-color:#0f3d13;
---accent-color:#2e7d32;
---hero-image:url("pga_banner.png");
-}
-
-/* ---------- MOBILE ---------- */
-
-@media (max-width: 600px) {
-
-  table {
-    font-size: 12px;
+  body{
+    padding:20px;
+    font-size:16px;
   }
 
-  th, td {
-    padding: 8px;
+  .hero-image{
+    height:250px;
   }
 
-  .hero-image {
-    height: 160px;
+  #hamburger{
+    display:none;
+  }
+
+  .closeMenu{
+    display: none;
+  }
+
+  .menu-header{
+    display: none;
+  }
+
+  .search-container{
+    flex-direction: row;
+  }
+
+  .expandNote{
+    padding: 4px 16px;
+  }
+
+  #navMenu{
+    position:static;
+    flex-direction:row;
+    height:auto;
+    width:100%;
+    padding:0;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    transform:none; /* 🔥 IMPORTANT */
+  }
+
+  #navMenu a:hover{
+    background:none;
+    text-decoration:underline;
+  }
+
+  #navMenu a{
+    margin: 0;
+    width: auto;
+    font-size:16px;
+    background:none;
+    flex:1;
+    text-align: center;
+    padding: 8px 0;
+  }
+
+  th, td{
+    padding:10px;
+  }
+
+  .teamSearch{
+    width:250px;
   }
 
 }
